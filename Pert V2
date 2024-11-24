@@ -1,0 +1,57 @@
+import networkx as nx
+import matplotlib.pyplot as plt
+
+# Création du graphe
+G = nx.DiGraph()
+
+# Ajout des tâches avec leurs durées estimées (en jours)
+tasks = {
+    "Objectif": 0,  # Point de départ
+    "Recherche documentaire": 2,
+    "Création de réseaux trophiques": 3,
+    "Réflexion sur le format des fichiers": 1,
+    "Analyse structurelle et fonctionnelle": 5,
+    "Code pour chargement et visualisation": 4,
+    "Simulation et visualisation graphique": 6,
+    "Résultats attendus": 0,  # Point final
+}
+
+# Dépendances entre les tâches
+dependencies = [
+    ("Objectif", "Recherche documentaire"),
+    ("Recherche documentaire", "Création de réseaux trophiques"),
+    ("Création de réseaux trophiques", "Réflexion sur le format des fichiers"),
+    ("Réflexion sur le format des fichiers", "Analyse structurelle et fonctionnelle"),
+    ("Analyse structurelle et fonctionnelle", "Code pour chargement et visualisation"),
+    ("Code pour chargement et visualisation", "Simulation et visualisation graphique"),
+    ("Simulation et visualisation graphique", "Résultats attendus"),
+]
+
+# Ajout des dépendances et des durées dans le graphe
+for task, duration in tasks.items():
+    G.add_node(task, duration=duration)
+
+for dep in dependencies:
+    G.add_edge(dep[0], dep[1])
+
+# Mise en forme pour le graphe
+pos = nx.planar_layout(G)  # Disposition claire pour les nœuds
+durations = nx.get_node_attributes(G, 'duration')
+
+# Dessin du graphe
+plt.figure(figsize=(12, 8))
+nx.draw(G, pos, with_labels=False, node_color='lightblue', node_size=3000, font_size=10, font_weight='bold')
+nx.draw_networkx_edge_labels(G, pos, edge_labels={(u, v): '' for u, v in G.edges()}, font_size=8)
+
+# Annotation des nœuds avec les noms et durées
+labels = {node: f"{node}" for node in G.nodes()}
+nx.draw_networkx_labels(G, pos, labels=labels, font_size=10, font_weight='bold')
+
+# Annotation des durées sous chaque nœud
+duration_labels = {node: f"{duration:.1f} jours" for node, duration in durations.items() if duration > 0}
+for node, text in duration_labels.items():
+    x, y = pos[node]
+    plt.text(x, y - 0.1, text, fontsize=8, ha='center', color='darkgreen')
+
+plt.title("Diagramme de PERT - Projet Réseaux Trophiques")
+plt.show()
