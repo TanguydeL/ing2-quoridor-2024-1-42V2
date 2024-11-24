@@ -1,0 +1,163 @@
+#Sommet : nom, numero,niv_trophique, quantité
+S, Feuilles, 0, 0, 100
+S, Herbes, 1, 0, 100
+S, Graines, 2, 1, 100
+S, Fruits, 3, 1, 100
+S, Racines, 4, 1, 100
+S, Champignons, 5, 2, 100
+S, Vers_de_terre, 6, 2, 100
+S, Fourmis, 7, 3, 100
+S, Insectes, 8, 3, 100
+S, Larves, 9, 3, 100
+S, Escargot, 10, 3, 100
+S, Grenouilles, 11, 4, 100
+S, Oiseaux, 12, 4, 100
+S, Ecureuil, 13, 4, 100
+S, Rongeurs, 14, 4, 100
+S, Lièvres, 15, 4, 100
+S, Hérisson, 16, 4, 100
+S, Chauve_souris, 17, 4, 100
+S, Renard, 18, 5, 100
+S, Blaireau, 19, 5, 100
+S, Serpent, 20, 5, 100
+S, Cheuvreuil, 21, 6, 100
+S, Faucon, 22, 7, 100
+S, Sanglier, 23, 6, 100
+S, Cerfs, 24, 6, 100
+S, Aigle, 25, 7, 100
+S, Lynx, 26, 7, 100
+S, Loups_gris, 27, 7, 100
+S, Ours, 28, 7, 100
+
+#Arete
+A, 0, 5, 9   # Feuilles --> Champignons
+A, 0, 6, 9   # Feuilles --> Vers de terre
+A, 0, 9, 9   # Feuilles --> Larves
+A, 0, 14, 9  # Feuilles --> Rongeurs
+A, 0, 15, 9  # Feuilles --> Lièvre
+A, 0, 21, 9  # Feuilles --> Chevreuil
+A, 0, 23, 9  # Feuilles --> Sanglier
+A, 0, 24, 9  # Feuilles --> Cerf
+
+A, 1, 5, 9   # Herbes --> Champignons
+A, 1, 6, 9   # Herbes --> Vers de terre
+A, 1, 9, 9   # Herbes --> Larves
+A, 1, 15, 9  # Herbes --> Lièvre
+A, 1, 21, 9  # Herbes --> Chevreuil
+A, 1, 23, 9  # Herbes --> Sanglier
+A, 1, 24, 9  # Herbes --> Cerf
+
+A, 2, 12, 9  # Graines --> Oiseaux
+A, 2, 13, 9  # Graines --> Écureuil
+A, 2, 14, 9  # Graines --> Rongeurs
+A, 2, 15, 9  # Graines --> Lièvre
+
+A, 3, 12, 9  # Fruits --> Oiseaux
+A, 3, 13, 9  # Fruits --> Écureuil
+A, 3, 14, 9  # Fruits --> Rongeurs
+A, 3, 15, 9  # Fruits --> Lièvre
+A, 3, 23, 9  # Fruits --> Sanglier
+A, 3, 28, 9  # Fruits--> Ours
+
+A, 4, 10, 9  # Racines --> Escargot
+A, 4, 14, 9  # Racines --> Rongeurs
+A, 4, 23, 9  # Racines --> Sanglier
+
+A, 5, 9, 9   # Champignons--> Larves
+A, 5, 10, 9  # Champignons --> Escargot
+A, 5, 19, 9  # Champignons --> Blaireau
+A, 5, 23, 9  # Champignons --> Sanglier
+
+A, 6, 10, 9  # Vers de terre --> Escargot
+A, 6, 11, 9  # Vers de terre --> Grenouille
+A, 6, 16, 9  # Vers de terre --> Hérisson
+A, 6, 19, 9  # Vers de terre --> Blaireau
+
+A, 7, 11, 9  # Fourmis --> Grenouilles
+A, 7, 19, 9  # Fourmis --> Blaireau
+
+A, 8, 11, 9  # Insectes --> Grenouilles
+A, 8, 14, 9  # Insectes --> Rongeurs
+A, 8, 16, 9  # Insectes--> Hérisson
+A, 8, 17, 9  # Insectes --> Chauve-souris
+A, 8, 19, 9  # Insectes --> Blaireau
+
+A, 9, 11, 9  # Larves --> Grenouilles
+A, 9, 12, 9  # Larves --> Oiseaux
+A, 9, 16, 9  # Larves--> Hérisson
+A, 9, 20, 9  # Larves --> Serpent
+
+A, 10, 16, 9  # Escargot --> Hérisson
+A, 10, 19, 9  # Escargot --> Blaireau
+A, 10, 20, 9  # Escargot --> Serpent
+
+A, 11, 18, 9  # Grenouille --> Renard
+A, 11, 19, 9  # Grenouille--> Blaireau
+A, 11, 20, 9  # Grenouille --> Serpent
+A, 11, 22, 9  # Grenouille --> Faucon
+
+A, 12, 18, 9  # Oiseaux --> Renard
+A, 12, 19, 9  # Oiseaux --> Blaireau
+A, 12, 20, 9  # Oiseaux --> Serpent
+A, 12, 22, 9  # Oiseaux --> Faucon
+A, 12, 25, 9  # Oiseaux --> Aigle
+A, 12, 26, 9  # Oiseaux --> Lynx
+
+A, 13, 18, 9  # Écureuil --> Renard
+A, 13, 19, 9  # Écureuil --> Blaireau
+A, 13, 20, 9  # Écureuil --> Serpent
+A, 13, 22, 9  # Écureuil --> Faucon
+A, 13, 25, 9  # Écureuil --> Aigle
+A, 13, 26, 9  # Écureuil --> Lynx
+
+A, 14, 16, 9  # Rongeurs --> Hérisson
+A, 14, 18, 9  # Rongeurs --> Renard
+A, 14, 19, 9  # Rongeurs --> Blaireau
+A, 14, 20, 9  # Rongeurs --> Serpent
+A, 14, 22, 9  # Rongeurs --> Faucon
+A, 14, 25, 9  # Rongeurs --> Aigle
+A, 14, 26, 9  # Rongeurs --> Lynx
+A, 14, 27, 9  # Rongeurs --> Loups gris
+
+A, 15, 18, 9  # Lièvre --> Renard
+A, 15, 19, 9  # Lièvre --> Blaireau
+A, 15, 22, 9  # Lièvre --> Faucon
+A, 15, 25, 9  # Lièvre --> Aigle
+A, 15, 26, 9  # Lièvre --> Lynx
+A, 15, 27, 9  # Lièvre --> Loups gris
+A, 15, 28, 9  # Lièvre --> Ours
+
+A, 16, 18, 9  # Hérisson --> Renard
+A, 16, 19, 9  # Hérisson --> Blaireau
+A, 16, 27, 9  # Hérisson --> Loups gris
+
+A, 17, 18, 9  # Chauve-souris --> Renard
+A, 17, 22, 9  # Chauve-souris --> Faucon
+A, 17, 25, 9  # Chauve-souris --> Aigle
+
+A, 18, 25, 9  # Renard --> Aigle
+A, 18, 26, 9  # Renard --> Lynx
+A, 18, 27, 9  # Renard --> Loups gris
+
+A, 19, 25, 9  # Blaireau --> Aigle
+A, 19, 27, 9  # Blaireau --> Loups gris
+A, 19, 28, 9  # Blaireau --> Ours
+
+A, 20, 19, 9  # Serpent --> Blaireau
+A, 20, 18, 9  # Serpent --> Renard
+A, 20, 22, 9  # Serpent --> Faucon
+A, 20, 25, 9  # Serpent --> Aigle
+
+A, 21, 25, 9  # Chevreuil --> Aigle
+A, 21, 26, 9  # Chevreuil --> Lynx
+A, 21, 27, 9  # Chevreuil --> Loups gris
+A, 21, 28, 9  # Chevreuil --> Ours
+
+A, 23, 26, 9  # Sanglier --> Lynx
+A, 23, 27, 9  # Sanglier --> Loups gris
+A, 23, 28, 9  # Sanglier --> Ours
+
+A, 24, 25, 9  # Cerf --> Aigle
+A, 24, 26, 9  # Cerf --> Lynx
+A, 24, 27, 9  # Cerf --> Loups gris
+A, 24, 28, 9  # Cerf --> Ours

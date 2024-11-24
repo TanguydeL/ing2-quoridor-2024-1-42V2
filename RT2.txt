@@ -1,0 +1,84 @@
+#Sommet : nom, numero,niv_trophique, quantité
+S, Herbes, 0, 0, 100
+S, Buissons, 1, 0, 100
+S, Fruits_savane, 2, 1, 100
+S, Racines_savane, 3, 1, 100
+S, Insectes, 4, 2, 100
+S, Termites, 5, 2, 100
+S, Antilopes, 6, 3, 100
+S, Zèbres, 7, 3, 100
+S, Gazelles, 8, 3, 100
+S, Phacochères, 9, 3, 100
+S, Oiseaux_insectivores, 10, 3, 100
+S, Serpents, 11, 4, 100
+S, Mangoustes, 12, 4, 100
+S, Chacals, 13, 5, 100
+S, Hyènes, 14, 5, 100
+S, Guépards, 15, 5, 100
+S, Lions, 16, 6, 100
+S, Vautours, 17, 6, 100
+
+#Arete
+A, 0, 4, 9   # Herbes --> Insectes
+A, 0, 6, 9   # Herbes --> Antilopes
+A, 0, 7, 9   # Herbes --> Zèbres
+A, 0, 8, 9   # Herbes --> Gazelles
+
+A, 1, 4, 9   # Buissons --> Insectes
+A, 1, 9, 9   # Buissons --> Phacochères
+A, 1, 6, 9   # Buissons --> Antilopes
+A, 1, 8, 9   # Buissons --> Gazelles
+
+A, 2, 6, 9   # Fruits_savane --> Antilopes
+A, 2, 7, 9   # Fruits_savane --> Zèbres
+A, 2, 9, 9   # Fruits_savane --> Phacochères
+A, 2, 10, 9  # Fruits_savane --> Oiseaux_insectivores
+
+A, 3, 9, 9   # Racines_savane --> Phacochères
+A, 3, 4, 9   # Racines_savane --> Insectes
+
+A, 4, 11, 9  # Insectes --> Serpents
+A, 4, 10, 9  # Insectes --> Oiseaux_insectivores
+A, 4, 12, 9  # Insectes --> Mangoustes
+
+A, 5, 10, 9  # Termites --> Oiseaux_insectivores
+A, 5, 12, 9  # Termites --> Mangoustes
+A, 5, 14, 9  # Termites --> Hyènes
+
+A, 6, 13, 9  # Antilopes --> Chacals
+A, 6, 14, 9  # Antilopes --> Hyènes
+A, 6, 15, 9  # Antilopes --> Guépards
+A, 6, 16, 9  # Antilopes --> Lions
+
+A, 7, 13, 9  # Zèbres --> Chacals
+A, 7, 14, 9  # Zèbres --> Hyènes
+A, 7, 15, 9  # Zèbres --> Guépards
+A, 7, 16, 9  # Zèbres --> Lions
+
+A, 8, 13, 9  # Gazelles --> Chacals
+A, 8, 14, 9  # Gazelles --> Hyènes
+A, 8, 15, 9  # Gazelles --> Guépards
+A, 8, 16, 9  # Gazelles --> Lions
+
+A, 9, 13, 9  # Phacochères --> Chacals
+A, 9, 14, 9  # Phacochères --> Hyènes
+A, 9, 15, 9  # Phacochères --> Guépards
+A, 9, 16, 9  # Phacochères --> Lions
+
+A, 10, 12, 9  # Oiseaux_insectivores --> Mangoustes
+A, 10, 14, 9  # Oiseaux_insectivores --> Hyènes
+A, 10, 17, 9  # Oiseaux_insectivores --> Vautours
+
+A, 11, 13, 9  # Serpents --> Chacals
+A, 11, 12, 9  # Serpents --> Mangoustes
+A, 11, 15, 9  # Serpents --> Guépards
+
+A, 13, 16, 9  # Chacals --> Lions
+A, 13, 17, 9  # Chacals --> Vautours
+
+A, 14, 16, 9  # Hyènes --> Lions
+A, 14, 17, 9  # Hyènes --> Vautours
+
+A, 15, 17, 9  # Guépards --> Vautours
+
+A, 16, 17, 9  # Lions --> Vautours
