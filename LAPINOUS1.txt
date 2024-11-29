@@ -1,0 +1,156 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#include <stdbool.h>
+
+
+struct HERBE {                                                                                        // Structure HERBE
+    int Taille_Moi_Dernier;
+    int Taille_PostSimulation;
+    int Nourriture;
+};
+struct LAPIN {                                                                                        // Structure LAPIN
+    int Taille_Moi_Dernier;
+    int Taille_PostSimulation;
+    int Nourriture;
+};
+
+
+void SIMULATION(struct HERBE *herbe, struct LAPIN *lapin) {                               //Sous-programme de Simulation
+
+    int Herbe_10 = (int)(herbe->Taille_Moi_Dernier * 0.1);
+    int Herbe_20 = (int)(herbe->Taille_Moi_Dernier * 0.2);
+
+    int Lapin_10 = (int)(lapin->Taille_Moi_Dernier * 0.1);
+    int Lapin_20 = (int)(lapin->Taille_Moi_Dernier * 0.2);
+
+    printf("\n");
+    printf("Effectif Herbe Mois Dernier : %d\n", herbe->Taille_Moi_Dernier);
+    printf("Effectif Lapin Mois Dernier : %d\n", lapin->Taille_Moi_Dernier);
+    printf("\n");
+
+    int CroissanceHERBE = (rand() % 5) + 1;
+    switch (CroissanceHERBE) {
+        case 1:                                                                                  // 20% d'herbe en moins
+            printf("L'Herbe a perdu natrellement 20 %% de son effectif, soit : %d unites\n", Herbe_20);
+            herbe->Taille_PostSimulation = herbe->Taille_Moi_Dernier - Herbe_20;
+            break;
+        case 2:                                                                                  // 10% d'herbe en moins
+            printf("L'Herbe a perdu natrellement 10 %% de son effectif, soit : %d unites\n", Herbe_10);
+            herbe->Taille_PostSimulation = herbe->Taille_Moi_Dernier - Herbe_10;
+            break;
+        case 3:                                                                                    // Pas de changements
+            printf("L'Herbe est restee stable\n");
+            herbe->Taille_PostSimulation = herbe->Taille_Moi_Dernier;
+            break;
+        case 4:                                                                                   // 10% d'herbe en plus
+            printf("L'Herbe a gagne natrellement 10 %% de son effectif, soit : %d unites\n", Herbe_10);
+            herbe->Taille_PostSimulation = herbe->Taille_Moi_Dernier + Herbe_10;
+            break;
+        case 5:                                                                                   // 20% d'herbe en plus
+            printf("L'Herbe a gagne natrellement 20 %% de son effectif, soit : %d unites\n", Herbe_20);
+            herbe->Taille_PostSimulation = herbe->Taille_Moi_Dernier + Herbe_20;
+            break;
+    }
+    printf("Effectif Herbe avant d'etre mange : %d\n", herbe->Taille_PostSimulation);
+    printf("\n");
+
+    int lapins_a_nourrir = lapin->Taille_Moi_Dernier;
+    int nourriture_collectes_lapin = 0;
+    int herbe_restante = herbe->Taille_PostSimulation;
+
+    while (lapins_a_nourrir > 0 && herbe_restante > 0)
+    {
+        nourriture_collectes_lapin++;
+        herbe_restante--;
+        lapins_a_nourrir--;
+    }
+
+    herbe->Taille_PostSimulation = herbe_restante;
+    lapin->Nourriture = nourriture_collectes_lapin;
+
+    printf("Les lapins ont manges %d herbes\n", nourriture_collectes_lapin);
+    printf("Lapins non nourris : %d\n", lapins_a_nourrir);
+
+    if (lapins_a_nourrir > 0)
+    {
+        lapin->Taille_PostSimulation = lapin->Taille_Moi_Dernier - lapins_a_nourrir;
+        printf("%d lapins sont morts de faim\n", lapins_a_nourrir);
+    }
+    else
+    {
+        lapin->Taille_PostSimulation = lapin->Taille_Moi_Dernier;
+        printf("Tous les lapins ont ete nourris\n");
+        int CroissanceLapin = (rand() % 2) + 1;
+        switch (CroissanceLapin)
+        {
+            case 1:                                                                             // 10% de lapins en plus
+                printf("Les lapins gagnent 10 %% de leur effectif, soit : %d \n", Lapin_10);
+                lapin->Taille_PostSimulation = lapin->Taille_Moi_Dernier + Lapin_10;
+                break;
+            case 2:                                                                             // 20% de lapins en plus
+                printf("Les lapins gagnent 20 %% de leur effectif, soit : %d \n", Lapin_20);
+                lapin->Taille_PostSimulation = lapin->Taille_Moi_Dernier + Lapin_20;
+                break;
+        }
+    }
+
+    //******************************************************************************************************************
+    if (herbe->Taille_PostSimulation < 10)                                          //Bornes pour rester entre 10 et 190
+    {
+        herbe->Taille_PostSimulation = 10;
+    }
+    if (herbe->Taille_PostSimulation > 190)
+    {
+        herbe->Taille_PostSimulation = 190;
+    }
+    if (lapin->Taille_PostSimulation < 10)
+    {
+        lapin->Taille_PostSimulation = 10;
+    }
+    if (lapin->Taille_PostSimulation > 190)
+    {
+        lapin->Taille_PostSimulation = 190;
+    }
+    //******************************************************************************************************************
+    printf("\n");
+    printf("Effectif Herbe Maintenant : %d\n", herbe->Taille_PostSimulation);
+    printf("Effectif Lapin Maintenant : %d\n", lapin->Taille_PostSimulation);
+}
+
+int main() {
+    int choix;
+    bool continuer = true;
+    srand(time(NULL));
+
+    // Initialisation des structures
+    struct HERBE herbe = {100, 0, 0}; // Taille initiale de l'herbe
+    struct LAPIN lapin = {50, 0, 0};  // Nombre initial de lapins (50)
+
+    printf("Lancer une simulation ? (OUI = 1, NON = 0) : ");
+    scanf("%d", &choix);
+
+    if (choix == 1)
+    {
+        while (continuer == true)
+        {
+            SIMULATION(&herbe, &lapin);
+
+            herbe.Taille_Moi_Dernier = herbe.Taille_PostSimulation;
+            lapin.Taille_Moi_Dernier = lapin.Taille_PostSimulation;
+
+            herbe.Taille_PostSimulation = 0;
+            lapin.Taille_PostSimulation = 0;
+
+            printf("\n");
+            printf("Continuer la simulation ? (OUI = 1, NON = 0) : \n");
+            scanf("%d", &choix);
+
+            if (choix == 0)
+            {
+                continuer = false;
+            }
+        }
+    }
+    return 0;
+}

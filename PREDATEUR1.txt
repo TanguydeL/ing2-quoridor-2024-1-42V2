@@ -1,0 +1,110 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#include <stdbool.h>
+
+bool Test = false;
+
+int NombreHerbeInitial = 100;
+int NombreLapinInitial = 100;
+int NombreLoupsInitial = 100;
+
+int NouveauNombreHerbe = 0;
+int NouveauNombreLapin = 0;
+int NouveauNombreLoups = 0;
+
+int UnMoisPasse(int NombreHerbe, int NombreLapin, int NombreLoups)
+{
+    NouveauNombreHerbe = NombreHerbe;
+    NouveauNombreLapin = NombreLapin;
+    NouveauNombreLoups = NombreLoups;
+
+    int HerbeVingt = (int)(NombreHerbe * 0.2);
+    int HerbeDix = (int)(NombreHerbe * 0.1);
+
+    int Valeur_Aleatoire = (rand() % 5) + 1;;
+    switch (Valeur_Aleatoire)
+    {
+        case 1:
+            printf("L'Herbe a perdu 20 %% de son effectif, soit : %d \n", HerbeVingt);
+            NouveauNombreHerbe = NombreHerbe - HerbeVingt;
+            break;
+        case 2:
+            printf("L'Herbe a perdu 10 %% de son effectif, soit : %d \n", HerbeDix);
+            NouveauNombreHerbe = NombreHerbe - HerbeDix;
+            break;
+        case 3:
+            printf("L'Herbe est reste stable \n");
+            NouveauNombreHerbe = NombreHerbe;
+            break;
+        case 4:
+            printf("L'Herbe a gagne 10 %% de son effectif, soit : %d \n", HerbeDix);
+            NouveauNombreHerbe = NombreHerbe + HerbeDix;
+            break;
+        case 5:
+            printf("L'Herbe a gagne 20 %% de son effectif, soit : %d \n", HerbeVingt);
+            NouveauNombreHerbe = NombreHerbe + HerbeVingt;
+            break;
+    }
+    return NouveauNombreLapin, NouveauNombreHerbe, NouveauNombreLoups, NombreHerbe, NombreLapin, NombreLoups;
+}
+
+int main()
+{
+    int NombreHerbe = NombreHerbeInitial;
+    int NombreLapin = NombreLapinInitial;
+    int NombreLoups = NombreLoupsInitial;
+    printf("Voulez vous lancer un test ? (Oui = 1 /Non = 0)\n");
+    int CHOIX = 0;
+    int CHOIXB = 2;
+    scanf("%d", &CHOIX);
+    if (CHOIX == 1)
+    {
+        Test = true;
+        while (Test == true)
+        {
+            srand(time(NULL));
+            printf("Debut Test\n");
+
+            printf("**************************************************\n");
+            printf("Nombre Herbe le mois dernier= %d\n", NombreHerbe);
+            printf("Nombre Lapin le mois dernier= %d\n", NombreLapin);
+            printf("Nombre Loups le mois dernier= %d\n", NombreLoups);
+            printf("\n");
+            UnMoisPasse(NombreHerbe, NombreLapin, NombreLoups);
+            printf("\n");
+            printf("Nombre Herbe Actuel= %d\n", NouveauNombreHerbe);
+            printf("Nombre Lapin Actuel= %d\n", NouveauNombreLapin);
+            printf("Nombre Loups Actuel= %d\n", NouveauNombreLoups);
+            printf("**************************************************\n");
+
+            printf("Fin Test\n");
+
+            NombreLapin = NouveauNombreLapin;
+            NombreHerbe = NouveauNombreHerbe;
+            NombreLoups = NouveauNombreLoups;
+
+            printf("\n");
+            printf("\n");
+            printf("Voulez vous lancer un autre test ? (Oui = 1 /Non = 0)\n");
+            scanf("%d", &CHOIXB);
+            if (CHOIXB == 0)
+            {
+                Test = false;
+            }
+            if (CHOIXB == 1)
+            {
+                Test = true;
+            }
+        }
+
+
+    }
+    else
+    {
+        printf("Fin du programme\n");
+        return 0;
+    }
+
+    return 0;
+}

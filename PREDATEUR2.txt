@@ -1,0 +1,215 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#include <stdbool.h>
+
+bool Test = false;
+
+int NombreHerbeInitial = 100;
+int NombreLapinInitial = 100;
+int NombreLoupsInitial = 100;
+
+int NouveauNombreHerbe = 0;
+int NouveauNombreLapin = 0;
+int NouveauNombreLoups = 0;
+
+int UnAnPasse(int NombreHerbe, int NombreLapin, int NombreLoups)
+{
+    NouveauNombreHerbe = NombreHerbe;
+    NouveauNombreLapin = NombreLapin;
+    NouveauNombreLoups = NombreLoups;
+
+    int HerbeVingt = (int)(NombreHerbe * 0.2);
+    int HerbeDix = (int)(NombreHerbe * 0.1);
+
+    int LapinCinq = (int)(NombreLapin * 0.05);
+    int LapinDix = (int)(NombreLapin * 0.1);
+    int LapinVingt = (int)(NombreLapin * 0.2);
+    int LapinTrente = (int)(NombreLapin * 0.3);
+
+    int LoupsCinq = (int)(NombreLoups * 0.05);
+    int LoupsDix = (int)(NombreLoups * 0.1);
+    int LoupsQuinze = (int)(NombreLoups * 0.15);
+
+    int Valeur_AleatoireHerbe = (rand() % 5) + 1;;
+    switch (Valeur_AleatoireHerbe)
+    {
+        case 1:                                                                                  // 20% d'herbe en moins
+            printf("L'Herbe a perdu 20 %% de son effectif, soit : %d \n", HerbeVingt);
+            NouveauNombreHerbe = NombreHerbe - HerbeVingt;
+            break;
+        case 2:                                                                                  // 10% d'herbe en moins
+            printf("L'Herbe a perdu 10 %% de son effectif, soit : %d \n", HerbeDix);
+            NouveauNombreHerbe = NombreHerbe - HerbeDix;
+            break;
+        case 3:                                                                                    // Pas de changements
+            printf("L'Herbe est reste stable \n");
+            NouveauNombreHerbe = NombreHerbe;
+            break;
+        case 4:                                                                                   // 10% d'herbe en plus
+            printf("L'Herbe a gagne 10 %% de son effectif, soit : %d \n", HerbeDix);
+            NouveauNombreHerbe = NombreHerbe + HerbeDix;
+            break;
+        case 5:                                                                                   // 20% d'herbe en plus
+            printf("L'Herbe a gagne 20 %% de son effectif, soit : %d \n", HerbeVingt);
+            NouveauNombreHerbe = NombreHerbe + HerbeVingt;
+            break;
+    }
+//**********************************************************************************************************************
+    if (NombreHerbe < NombreLapin)                                                             // 20% de lapins en moins
+    {
+        printf("Pas assez d'herbe pour les lapins, %d sont morts de faim\n", LapinVingt);
+        NouveauNombreLapin = NombreLapin - LapinVingt;
+    }
+    if (NombreHerbe == NombreLapin)
+    {
+        int Valeur_AleatoireLapin = (rand() % 2) + 1;
+        switch (Valeur_AleatoireLapin)
+        {
+            case 1:                                                                              // 5% de lapins en plus
+                printf("Il y a juste assez d'herbe pour les lapins, %d lapins naissent\n", LapinCinq);
+                NouveauNombreLapin = (int)(NombreLapin + LapinCinq);
+                break;
+            case 2:                                                                             // 10% de lapins en plus
+                printf("Il y a juste assez d'herbe pour les lapins, %d lapins naissent\n", LapinDix);
+                NouveauNombreLapin = (int)(NombreLapin + LapinDix);
+            break;
+        }
+    }
+    if (NombreHerbe > NombreLapin)
+    {
+        int Valeur_AleatoireLapin = (rand() % 2) + 1;
+        switch (Valeur_AleatoireLapin)
+        {
+            case 1:                                                                             // 20% de lapins en plus
+                printf("Il y a surplus d'herbe pour les lapins, %d lapins naissent\n", LapinVingt);
+                NouveauNombreLapin = NombreLapin + LapinVingt;
+            break;
+            case 2:                                                                             // 30% de lapins en plus
+                printf("Il y a surplus d'herbe pour les lapins, %d lapins naissent\n", LapinTrente);
+                NouveauNombreLapin = NombreLapin + LapinTrente;
+            break;
+        }
+    }
+//**********************************************************************************************************************
+    if (NombreLapin/2 < NombreLoups)                                                            // 10% de loups en moins
+    {
+        printf("Pas assez de lapins pour les loups, %d meurent de faim\n", LoupsDix);
+        NouveauNombreLoups = NombreLoups - LoupsDix;
+    }
+    if (NombreLapin/2 == NombreLoups)
+    {
+        int Valeur_AleatoireLoups = (rand() % 2) + 1;
+        switch (Valeur_AleatoireLoups)
+        {
+            case 1:                                                                               // 5% de loups en plus
+                printf("Il y a juste assez de lapins pour les loups, %d loups naissent\n", LoupsCinq);
+                NouveauNombreLoups = NombreLoups + LoupsCinq;
+                break;
+            case 2:                                                                              // 10% de loups en plus
+                printf("Il y a juste assez de lapins pour les loups, %d loups naissent\n", LoupsDix);
+                NouveauNombreLoups = NombreLoups + LoupsDix;
+                break;
+        }
+    }
+    if (NombreLapin/2 > NombreLoups)
+    {
+        int Valeur_AleatoireLoups = (rand() % 2) + 1;
+        switch (Valeur_AleatoireLoups)
+        {
+            case 1:                                                                              // 10% de loups en plus
+                printf("Il y a surplus de lapins pour les loups, %d loups naissent\n", LoupsDix);
+                NouveauNombreLoups = NombreLoups + LoupsDix;
+                break;
+            case 2:                                                                              // 15% de loups en plus
+                printf("Il y a surplus de lapins pour les loups, %d loups naissent\n", LoupsQuinze);
+                NouveauNombreLoups = NombreLoups + LoupsQuinze;
+                break;
+        }
+    }
+    if (NouveauNombreHerbe > 200)
+    {
+        NouveauNombreHerbe = 200;
+    }
+    if (NouveauNombreHerbe < 10)
+    {
+        NouveauNombreHerbe = 10;
+    }
+    if (NouveauNombreLapin > 200)
+    {
+        NouveauNombreLapin = 200;
+    }
+    if (NouveauNombreLapin < 10)
+    {
+        NouveauNombreLapin = 10;
+    }
+    if (NouveauNombreLoups > 200)
+    {
+        NouveauNombreLoups = 200;
+    }
+    if (NouveauNombreLoups < 10)
+    {
+        NouveauNombreLoups = 10;
+    }
+    return NouveauNombreLapin, NouveauNombreHerbe, NouveauNombreLoups, NombreHerbe, NombreLapin, NombreLoups;
+}
+
+int main()
+{
+    int NombreHerbe = NombreHerbeInitial;
+    int NombreLapin = NombreLapinInitial;
+    int NombreLoups = NombreLoupsInitial;
+    printf("Voulez vous lancer un test ? (Oui = 1 /Non = 0)\n");
+    int CHOIX = 0;
+    int CHOIXB = 2;
+    scanf("%d", &CHOIX);
+    if (CHOIX == 1)
+    {
+        Test = true;
+        while (Test == true)
+        {
+            srand(time(NULL));
+            printf("Debut Test\n");
+
+            printf("**************************************************\n");
+            printf("Nombre Herbe le mois dernier= %d\n", NombreHerbe);
+            printf("Nombre Lapin le mois dernier= %d\n", NombreLapin);
+            printf("Nombre Loups le mois dernier= %d\n", NombreLoups);
+            printf("\n");
+            UnAnPasse(NombreHerbe, NombreLapin, NombreLoups);
+            printf("\n");
+            printf("Nombre Herbe Actuel= %d\n", NouveauNombreHerbe);
+            printf("Nombre Lapin Actuel= %d\n", NouveauNombreLapin);
+            printf("Nombre Loups Actuel= %d\n", NouveauNombreLoups);
+            printf("**************************************************\n");
+
+            printf("Fin Test\n");
+
+            NombreLapin = NouveauNombreLapin;
+            NombreHerbe = NouveauNombreHerbe;
+            NombreLoups = NouveauNombreLoups;
+
+            printf("\n");
+            printf("\n");
+            printf("Voulez vous lancer un autre test ? (Oui = 1 /Non = 0)\n");
+            scanf("%d", &CHOIXB);
+            if (CHOIXB == 0)
+            {
+                Test = false;
+            }
+            if (CHOIXB == 1)
+            {
+                Test = true;
+            }
+        }
+
+
+    }
+    else
+    {
+        printf("Fin du programme\n");
+        return 0;
+    }
+
+    return 0;
+}
