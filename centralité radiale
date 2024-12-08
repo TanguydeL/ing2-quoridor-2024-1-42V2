@@ -1,0 +1,34 @@
+//Pour le main 
+// Calcul et affichage des centralités radiales
+            calculer_centralite_radiale(monReseau);
+
+
+// pour bibli
+
+typedef struct {
+    char *nom;
+    int nbr_niv;
+    int *niveauTrophique;
+    int nbr_especes;
+    int numero;
+    struct Sommet **predecesseur;
+    struct Sommet **successeur;
+    int nbr_pred;
+    int nbr_succ;
+
+    int centralite_radiale; // Nouveau champ
+
+} Sommet;
+
+
+void calculer_centralite_radiale(ReseauTrophique *reseau) {
+    for (int i = 0; i < reseau->nbSommets; i++) {
+        // Calcul de la centralité radiale
+        int degre_entrant = reseau->sommets[i].nbr_pred;
+        int degre_sortant = reseau->sommets[i].nbr_succ;
+        reseau->sommets[i].centralite_radiale = degre_entrant + degre_sortant;
+
+        // Affichage pour validation
+        printf("La CR du sommet %s : Degre entrant = %d, Degre sortant = %d donc la Centralite radiale = %d\n", reseau->sommets[i].nom, degre_entrant,degre_sortant, reseau->sommets[i].centralite_radiale);
+    }
+}
